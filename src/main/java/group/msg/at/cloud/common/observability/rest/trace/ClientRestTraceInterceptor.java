@@ -1,7 +1,9 @@
-package group.msg.at.cloud.common.observability.spring.rest.trace;
+package group.msg.at.cloud.common.observability.rest.trace;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpRequestExecution;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
@@ -12,6 +14,7 @@ import java.io.IOException;
 /**
  * {@code RestTemplate} interceptor which logs outbound REST requests and inbound REST responses.
  */
+@Order(Ordered.LOWEST_PRECEDENCE)
 public final class ClientRestTraceInterceptor implements ClientHttpRequestInterceptor {
 
     private final Logger logger = LoggerFactory.getLogger(RestTraceConstants.REST_TRACE_LOGGER_NAME);

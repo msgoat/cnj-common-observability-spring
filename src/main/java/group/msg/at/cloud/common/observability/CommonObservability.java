@@ -1,4 +1,4 @@
-package group.msg.at.cloud.common.observability.spring;
+package group.msg.at.cloud.common.observability;
 
 /**
  * Simple anchor class to activate Spring component and configuration scanning.

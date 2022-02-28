@@ -9,14 +9,14 @@
     <description>Common components to improve observability of cloud-native applications based on Spring Boot</description>
     <properties>
         <!-- new Maven version management -->
-        <revision>0.1.0</revision>
+        <revision>0.2.0</revision>
         <sha1></sha1>
         <changelist></changelist>
         <!-- common properties -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>11</java.version>
-        <spring.boot.version>2.6.3</spring.boot.version>
+        <spring.boot.version>2.6.4</spring.boot.version>
         <!-- common logging dependencies -->
         <slf4j.version>1.7.30</slf4j.version>
         <!-- pinning versions of common maven plugins -->

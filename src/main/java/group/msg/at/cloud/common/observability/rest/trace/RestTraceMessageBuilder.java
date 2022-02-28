@@ -1,4 +1,4 @@
-package group.msg.at.cloud.common.observability.spring.rest.trace;
+package group.msg.at.cloud.common.observability.rest.trace;
 
 import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpResponse;
