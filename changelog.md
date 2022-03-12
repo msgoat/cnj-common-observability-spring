@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.1] - 2022-02-28
+### Added
+### Changed
+- removed obsolete dependency on Log4J 2 which caused duplicate SLF4J implementations in library users.
+
 ## [0.2.0] - 2022-02-28
 ### Added
 ### Changed

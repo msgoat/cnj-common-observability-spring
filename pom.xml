@@ -9,7 +9,7 @@
     <description>Common components to improve observability of cloud-native applications based on Spring Boot</description>
     <properties>
         <!-- new Maven version management -->
-        <revision>0.2.0</revision>
+        <revision>0.2.1</revision>
         <sha1></sha1>
         <changelist></changelist>
         <!-- common properties -->
@@ -51,22 +51,6 @@
         </dependencies>
     </dependencyManagement>
     <dependencies>
-        <!-- BEGIN: make sure we use Log4J 2 as the underlying logging framework to avoid clashes with the eCHS applications -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-logging</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-log4j2</artifactId>
-        </dependency>
-        <!-- END: make sure we use Log4J 2 as the underlying logging framework to avoid clashes with the eCHS applications -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
