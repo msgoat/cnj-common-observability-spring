@@ -9,16 +9,14 @@
     <description>Common components to improve observability of cloud-native applications based on Spring Boot</description>
     <properties>
         <!-- new Maven version management -->
-        <revision>0.2.1</revision>
+        <revision>0.3.0</revision>
         <sha1></sha1>
         <changelist></changelist>
         <!-- common properties -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>11</java.version>
-        <spring.boot.version>2.6.4</spring.boot.version>
-        <!-- common logging dependencies -->
-        <slf4j.version>1.7.30</slf4j.version>
+        <spring.boot.version>2.7.1</spring.boot.version>
         <!-- pinning versions of common maven plugins -->
         <maven.clean.plugin.version>3.1.0</maven.clean.plugin.version>
         <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
@@ -54,18 +52,33 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-undertow</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
     <build>
