@@ -123,7 +123,7 @@ public class JbossThreadPoolMetrics implements MeterBinder, AutoCloseable {
      */
     private void registerMetricsEventually(String namePatternSuffix, BiConsumer<ObjectName, Tags> perObject) {
         Set<ObjectName> objectNames = this.mBeanServer.queryNames(getNamePattern(namePatternSuffix), null);
-        log.info("*** METRICS *** found [{}] JMX object names: [{}]", objectNames.size(), objectNames);
+        log.info("*** METRICS *** Found [{}] JMX object names: [{}]", objectNames.size(), objectNames);
         if (!objectNames.isEmpty()) {
             // MBeans are present, so we can register metrics now.
             objectNames.forEach(objectName -> perObject.accept(objectName, Tags.concat(tags, nameTag(objectName))));
@@ -143,11 +143,11 @@ public class JbossThreadPoolMetrics implements MeterBinder, AutoCloseable {
                     Thread.sleep(5000);
                     objectNames = server.queryNames(namePattern, null);
                 } catch (InterruptedException e) {
-                    log.info("*** METRICS *** asynchronous registration of metrics interrupted after [{}] retries; will terminate", retries);
+                    log.info("*** METRICS *** Asynchronous registration of metrics interrupted after [{}] retries; will terminate", retries);
                 }
             }
             if (!objectNames.isEmpty()) {
-                log.info("*** METRICS *** found [{}] JMX object names after [{}] retries: [{}]", objectNames.size(), retries, objectNames);
+                log.info("*** METRICS *** Found [{}] JMX object names after [{}] retries: [{}]", objectNames.size(), retries, objectNames);
                 objectNames.forEach(objectName -> perObject.accept(objectName, Tags.concat(tags, nameTag(objectName))));
             }
         });
