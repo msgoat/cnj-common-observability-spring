@@ -22,7 +22,7 @@ public class UndertowMetricsHandlerWrapper implements HandlerWrapper {
 
     @Override
     public HttpHandler wrap(HttpHandler handler) {
-        logger.info("adding handler wrapper to Undertow handler chain");
+        logger.info("*** METRICS *** Adding handler wrapper to Undertow handler chain");
         metricsHandler = new MetricsHandler(handler);
         return metricsHandler;
     }

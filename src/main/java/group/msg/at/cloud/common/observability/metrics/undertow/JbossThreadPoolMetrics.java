@@ -1,7 +1,6 @@
 package group.msg.at.cloud.common.observability.metrics.undertow;
 
 import io.micrometer.core.instrument.*;
-import io.micrometer.core.instrument.binder.BaseUnits;
 import io.micrometer.core.instrument.binder.MeterBinder;
 import io.micrometer.core.lang.NonNullApi;
 import io.micrometer.core.lang.NonNullFields;
@@ -25,12 +24,12 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.BiConsumer;
 import java.util.function.ToDoubleFunction;
 
-@NonNullApi
-@NonNullFields
 /**
  * Custom {@code MeterBinder} which exports metrics of Undertow threadpool resources
- * using metrics name prefix {@code undertow.threadpools.*}.
+ * using metrics name prefix {@code undertow.threads.*}.
  */
+@NonNullApi
+@NonNullFields
 public class JbossThreadPoolMetrics implements MeterBinder, AutoCloseable {
 
     private static final Logger log = LogManager.getLogger(JbossThreadPoolMetrics.class);
@@ -81,40 +80,40 @@ public class JbossThreadPoolMetrics implements MeterBinder, AutoCloseable {
                 (name, allTags) -> {
                     registerGaugeForObject(registry, name,
                             "CorePoolSize", "core.pool.size", allTags,
-                            "The size below which new threads will always be created if no idle threads are available", BaseUnits.OBJECTS);
+                            "The size below which new threads will always be created if no idle threads are available", null);
                     registerGaugeForObject(registry, name,
                             "MaximumPoolSize", "max.pool.size", allTags,
-                            "The maximum pool size", BaseUnits.OBJECTS);
+                            "The maximum pool size", null);
                     registerGaugeForObject(registry, name,
                             "PoolSize", "current.pool.size", allTags,
-                            "An estimate of the current number of active threads in the pool", BaseUnits.OBJECTS);
+                            "An estimate of the current number of active threads in the pool", null);
                     registerGaugeForObject(registry, name,
                             "LargestPoolSize", "largest.pool.size", allTags,
-                            "An estimate of the peak number of threads that the pool has ever held", BaseUnits.OBJECTS);
+                            "An estimate of the peak number of threads that the pool has ever held", null);
                     registerGaugeForObject(registry, name,
                             "ActiveCount", "active.count", allTags,
-                            "An estimate of the current number of active (busy) threads", BaseUnits.OBJECTS);
+                            "An estimate of the current number of active (busy) threads", null);
                     registerGaugeForObject(registry, name,
                             "KeepAliveTimeSeconds", "keep.alive.time.seconds", allTags,
-                            "The thread keep-alive time in seconds", BaseUnits.OBJECTS);
+                            "The thread keep-alive time in seconds", null);
                     registerGaugeForObject(registry, name,
                             "MaximumQueueSize", "max.queue.size", allTags,
-                            "The maximum queue size for this thread pool", BaseUnits.OBJECTS);
+                            "The maximum queue size for this thread pool", null);
                     registerGaugeForObject(registry, name,
                             "QueueSize", "current.queue.size", allTags,
-                            "An estimate of the current queue size", BaseUnits.OBJECTS);
+                            "An estimate of the current queue size", null);
                     registerGaugeForObject(registry, name,
                             "LargestQueueSize", "largest.queue.size", allTags,
-                            "An estimate of the peak size of the queue", BaseUnits.OBJECTS);
+                            "An estimate of the peak size of the queue", null);
                     registerGaugeForObject(registry, name,
-                            "SubmittedTaskCount", "submitted.task.count", allTags,
-                            "An estimate of the total number of tasks ever submitted to this thread pool", BaseUnits.OBJECTS);
+                            "SubmittedTaskCount", "submitted.tasks.total", allTags,
+                            "An estimate of the total number of tasks ever submitted to this thread pool", null);
                     registerGaugeForObject(registry, name,
-                            "RejectedTaskCount", "rejected.task.count", allTags,
-                            "An estimate of the total number of tasks ever rejected by this thread pool for any reason", BaseUnits.OBJECTS);
+                            "RejectedTaskCount", "rejected.tasks.total", allTags,
+                            "An estimate of the total number of tasks ever rejected by this thread pool for any reason", null);
                     registerGaugeForObject(registry, name,
-                            "CompletedTaskCount", "completed.task.count", allTags,
-                            "An estimate of the total number of tasks completed by this thread pool", BaseUnits.OBJECTS);
+                            "CompletedTaskCount", "completed.tasks.total", allTags,
+                            "An estimate of the total number of tasks completed by this thread pool", null);
                 });
     }
 

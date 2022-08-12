@@ -19,7 +19,7 @@ public class UndertowMetricsConfiguration {
 
     @Bean
     UndertowDeploymentInfoCustomizer undertowDeploymentInfoCustomizer(UndertowMetricsHandlerWrapper undertowMetricsHandlerWrapper) {
-        logger.info("customize Undertow server configuration with metrics handler wrapper");
+        logger.info("*** METRICS *** Customize Undertow server configuration with metrics handler wrapper");
         return deploymentInfo ->
                 deploymentInfo.addOuterHandlerChainWrapper(undertowMetricsHandlerWrapper);
     }

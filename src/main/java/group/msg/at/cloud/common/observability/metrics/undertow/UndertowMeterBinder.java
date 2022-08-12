@@ -38,9 +38,9 @@ public class UndertowMeterBinder implements ApplicationListener<ApplicationReady
     }
 
     public void bindTo(MeterRegistry meterRegistry) {
-        logger.info("binding Undertow metrics handler wrapper to Micrometer meter registry");
+        logger.info("*** METRICS *** Binding Undertow metrics handler wrapper to Micrometer meter registry");
         bind(meterRegistry, undertowMetricsHandlerWrapper.getMetricsHandler());
-        logger.info("binding JBoss Thread Pool metrics to Micrometer meter registry");
+        logger.info("*** METRICS *** Binding JBoss Thread Pool metrics to Micrometer meter registry");
         new JbossThreadPoolMetrics(new ArrayList<>()).bindTo(meterRegistry);
     }
 
@@ -49,8 +49,6 @@ public class UndertowMeterBinder implements ApplicationListener<ApplicationReady
                 m -> m.getMetrics().getTotalRequests(), m2 -> m2.getMetrics().getMinRequestTime());
         bindTimeGauge(registry, "undertow.request.time.max", "The longest request duration in time", metricsHandler,
                 m -> m.getMetrics().getMaxRequestTime());
-        bindTimeGauge(registry, "undertow.request.time.min", "The shortest request duration in time", metricsHandler,
-                m -> m.getMetrics().getMinRequestTime());
         bindTimeGauge(registry, "undertow.request.time.min", "The shortest request duration in time", metricsHandler,
                 m -> m.getMetrics().getMinRequestTime());
         bindCounter(registry, "undertow.request.errors", "Total number of error requests ", metricsHandler,
