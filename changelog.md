@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.0] - 2022-09-12
+### Fixed
+- now REST trace works if application property `cnj.observability.rest.tracing.enabled` is set to `true`.
+- added auto-configuration capability to library, in order to get all components provided by this library scanned by default.
+
 ## [0.4.0] - 2022-08-12
 ### Changed
 - consolidated undertow metric names with Prometheus metric naming conventions 

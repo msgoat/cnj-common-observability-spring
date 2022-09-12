@@ -9,7 +9,7 @@
     <description>Common components to improve observability of cloud-native applications based on Spring Boot</description>
     <properties>
         <!-- new Maven version management -->
-        <revision>0.4.0</revision>
+        <revision>0.5.0</revision>
         <sha1></sha1>
         <changelist></changelist>
         <!-- common properties -->
