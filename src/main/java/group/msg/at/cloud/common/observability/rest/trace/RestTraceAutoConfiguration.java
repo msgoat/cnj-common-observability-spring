@@ -1,5 +1,7 @@
 package group.msg.at.cloud.common.observability.rest.trace;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -17,6 +19,8 @@ import org.springframework.context.annotation.Configuration;
 @ConditionalOnProperty(name = "cnj.observability.rest.tracing.enabled", havingValue = "true")
 public class RestTraceAutoConfiguration {
 
+    private final Logger log = LoggerFactory.getLogger(getClass());
+
     @Value("${cnj.observability.rest.tracing.enabled:false}")
     private boolean enabled;
 
@@ -25,6 +29,7 @@ public class RestTraceAutoConfiguration {
 
     @Bean
     public FilterRegistrationBean<ContainerRestTraceFilter> containerRestTraceFilter() {
+        log.info("*** CONFIG *** Adding container rest trace filter to application context");
         FilterRegistrationBean<ContainerRestTraceFilter> result = new FilterRegistrationBean<>();
         ContainerRestTraceFilter filter = new ContainerRestTraceFilter();
         filter.setEnabled(this.enabled);
@@ -35,6 +40,7 @@ public class RestTraceAutoConfiguration {
 
     @Bean
     public ClientRestTraceInterceptor clientRestTraceInterceptor() {
+        log.info("*** CONFIG *** Adding client rest trace interceptor to application context");
         ClientRestTraceInterceptor result = new ClientRestTraceInterceptor();
         result.setEnabled(this.enabled);
         return result;
@@ -42,6 +48,7 @@ public class RestTraceAutoConfiguration {
 
     @Bean
     public RestTraceRestTemplateCustomizer clientRestTraceInterceptorCustomizer() {
+        log.info("*** CONFIG *** Adding client rest trace interceptor customizer to application context");
         return new RestTraceRestTemplateCustomizer(clientRestTraceInterceptor());
     }
 }
