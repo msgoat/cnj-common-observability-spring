@@ -1,6 +1,9 @@
 package group.msg.at.cloud.common.observability.metrics.undertow;
 
-import io.micrometer.core.instrument.*;
+import io.micrometer.core.instrument.FunctionCounter;
+import io.micrometer.core.instrument.FunctionTimer;
+import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.TimeGauge;
 import io.undertow.Undertow;
 import io.undertow.server.handlers.MetricsHandler;
 import org.slf4j.Logger;
