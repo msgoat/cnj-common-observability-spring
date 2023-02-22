@@ -1,11 +1,10 @@
 package group.msg.at.cloud.common.observability.rest.trace;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpResponse;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.constraints.NotNull;
 
 /**
  * {@code Builder} for REST request and response trace messages.

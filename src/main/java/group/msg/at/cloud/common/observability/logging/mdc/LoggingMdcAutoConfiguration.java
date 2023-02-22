@@ -1,6 +1,7 @@
 package group.msg.at.cloud.common.observability.logging.mdc;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
  * Configuration for logging context information.
  */
 @Configuration
+@ConditionalOnClass(name = "org/springframework/security/core/context/SecurityContextHolder")
 public class LoggingMdcAutoConfiguration {
 
     @Value("${cnj.observability.logging.mdc.enabled:true}")

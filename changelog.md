@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2023-02-22
+### Changed
+- upgraded to Java 17
+- upgraded to Spring Boot 3.0.2
+- updated detection of auto-configuration class to Spring Boot 3 method 
+- moved to new build pipeline on AWS
+
 ## [0.5.0] - 2022-09-12
 ### Fixed
 - now REST trace works if application property `cnj.observability.rest.tracing.enabled` is set to `true`.

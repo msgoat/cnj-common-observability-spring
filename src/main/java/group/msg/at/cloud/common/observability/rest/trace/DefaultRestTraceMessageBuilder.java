@@ -1,11 +1,11 @@
 package group.msg.at.cloud.common.observability.rest.trace;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpResponse;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.*;
 
@@ -51,7 +51,7 @@ public class DefaultRestTraceMessageBuilder implements RestTraceMessageBuilder {
     private void appendRequest(StringBuilder traceMessage, HttpRequest request, boolean withHeaders) {
         traceMessage.append("request : { ");
         traceMessage.append("uri : \"").append(request.getURI()).append("\"");
-        traceMessage.append(", method : \"").append(request.getMethodValue()).append("\"");
+        traceMessage.append(", method : \"").append(request.getMethod()).append("\"");
         if (withHeaders) {
             traceMessage.append(", ");
             appendHeaders(traceMessage, request.getHeaders());
