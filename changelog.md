@@ -6,11 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2023-08-24
+### Changed
+- added REST tracing support for WebClient based REST clients
+- improved documentation
+
 ## [1.0.0] - 2023-02-22
 ### Changed
 - upgraded to Java 17
 - upgraded to Spring Boot 3.0.2
-- updated detection of auto-configuration class to Spring Boot 3 method 
+- updated detection of autoconfiguration class to Spring Boot 3 method 
 - moved to new build pipeline on AWS
 
 ## [0.5.0] - 2022-09-12

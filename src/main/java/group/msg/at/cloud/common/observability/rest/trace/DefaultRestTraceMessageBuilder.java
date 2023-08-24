@@ -5,6 +5,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpResponse;
+import org.springframework.web.reactive.function.client.ClientRequest;
+import org.springframework.web.reactive.function.client.ClientResponse;
 
 import java.io.IOException;
 import java.util.*;
@@ -14,10 +16,17 @@ import java.util.*;
  */
 public class DefaultRestTraceMessageBuilder implements RestTraceMessageBuilder {
 
-    private static final Set<String> CONFIDENTIAL_HEADER_NAMES = Set.of("Authorization");
+    private static final Set<String> CONFIDENTIAL_HEADER_NAMES = Set.of("Authorization", "authorization");
 
     @Override
     public void build(StringBuilder traceMessage, HttpRequest request) {
+        traceMessage.append("*** REST REQUEST OUT *** { ");
+        appendRequest(traceMessage, request, true);
+        traceMessage.append(" }");
+    }
+
+    @Override
+    public void build(StringBuilder traceMessage, ClientRequest request) {
         traceMessage.append("*** REST REQUEST OUT *** { ");
         appendRequest(traceMessage, request, true);
         traceMessage.append(" }");
@@ -32,6 +41,15 @@ public class DefaultRestTraceMessageBuilder implements RestTraceMessageBuilder {
 
     @Override
     public void build(StringBuilder traceMessage, HttpRequest request, ClientHttpResponse response) {
+        traceMessage.append("*** REST RESPONSE IN *** { ");
+        appendRequest(traceMessage, request, false);
+        traceMessage.append(", ");
+        appendResponse(traceMessage, response);
+        traceMessage.append(" }");
+    }
+
+    @Override
+    public void build(StringBuilder traceMessage, ClientRequest request, ClientResponse response) {
         traceMessage.append("*** REST RESPONSE IN *** { ");
         appendRequest(traceMessage, request, false);
         traceMessage.append(", ");
@@ -55,6 +73,17 @@ public class DefaultRestTraceMessageBuilder implements RestTraceMessageBuilder {
         if (withHeaders) {
             traceMessage.append(", ");
             appendHeaders(traceMessage, request.getHeaders());
+        }
+        traceMessage.append(" }");
+    }
+
+    private void appendRequest(StringBuilder traceMessage, ClientRequest request, boolean withHeaders) {
+        traceMessage.append("request : { ");
+        traceMessage.append("uri : \"").append(request.url()).append("\"");
+        traceMessage.append(", method : \"").append(request.method()).append("\"");
+        if (withHeaders) {
+            traceMessage.append(", ");
+            appendHeaders(traceMessage, request.headers());
         }
         traceMessage.append(" }");
     }
@@ -88,6 +117,14 @@ public class DefaultRestTraceMessageBuilder implements RestTraceMessageBuilder {
         traceMessage.append("statusCode : ").append(response.getStatus());
         traceMessage.append(", ");
         appendHeaders(traceMessage, response);
+        traceMessage.append(" }");
+    }
+
+    private void appendResponse(StringBuilder traceMessage, ClientResponse response) {
+        traceMessage.append("response { ");
+        traceMessage.append("statusCode : ").append(response.statusCode().value());
+        traceMessage.append(", ");
+        appendHeaders(traceMessage, response.headers().asHttpHeaders());
         traceMessage.append(" }");
     }
 

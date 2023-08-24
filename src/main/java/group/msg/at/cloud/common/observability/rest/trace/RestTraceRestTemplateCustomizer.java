@@ -12,9 +12,9 @@ import java.util.List;
  */
 public final class RestTraceRestTemplateCustomizer implements RestTemplateCustomizer {
 
-    private final ClientRestTraceInterceptor interceptor;
+    private final RestTraceClientInterceptor interceptor;
 
-    RestTraceRestTemplateCustomizer(ClientRestTraceInterceptor interceptor) {
+    RestTraceRestTemplateCustomizer(RestTraceClientInterceptor interceptor) {
         this.interceptor = interceptor;
     }
 

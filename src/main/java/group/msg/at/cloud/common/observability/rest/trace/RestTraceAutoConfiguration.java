@@ -28,10 +28,10 @@ public class RestTraceAutoConfiguration {
     private String urlPatterns;
 
     @Bean
-    public FilterRegistrationBean<ContainerRestTraceFilter> containerRestTraceFilter() {
+    public FilterRegistrationBean<RestTraceContainerFilter> containerRestTraceFilter() {
         log.info("*** CONFIG *** Adding container rest trace filter to application context");
-        FilterRegistrationBean<ContainerRestTraceFilter> result = new FilterRegistrationBean<>();
-        ContainerRestTraceFilter filter = new ContainerRestTraceFilter();
+        FilterRegistrationBean<RestTraceContainerFilter> result = new FilterRegistrationBean<>();
+        RestTraceContainerFilter filter = new RestTraceContainerFilter();
         filter.setEnabled(this.enabled);
         result.setFilter(filter);
         result.addUrlPatterns(this.urlPatterns);
@@ -39,9 +39,9 @@ public class RestTraceAutoConfiguration {
     }
 
     @Bean
-    public ClientRestTraceInterceptor clientRestTraceInterceptor() {
+    public RestTraceClientInterceptor clientRestTraceInterceptor() {
         log.info("*** CONFIG *** Adding client rest trace interceptor to application context");
-        ClientRestTraceInterceptor result = new ClientRestTraceInterceptor();
+        RestTraceClientInterceptor result = new RestTraceClientInterceptor();
         result.setEnabled(this.enabled);
         return result;
     }
@@ -50,5 +50,13 @@ public class RestTraceAutoConfiguration {
     public RestTraceRestTemplateCustomizer clientRestTraceInterceptorCustomizer() {
         log.info("*** CONFIG *** Adding client rest trace interceptor customizer to application context");
         return new RestTraceRestTemplateCustomizer(clientRestTraceInterceptor());
+    }
+
+    @Bean
+    public RestTraceWebClientCustomizer restTraceWebClientCustomizer() {
+        log.info("*** CONFIG *** Adding web client rest trace customizer to application context");
+        RestTraceWebClientCustomizer result = new RestTraceWebClientCustomizer();
+        result.setEnabled(this.enabled);
+        return result;
     }
 }

@@ -28,8 +28,6 @@ import java.util.function.ToDoubleFunction;
  * Custom {@code MeterBinder} which exports metrics of Undertow threadpool resources
  * using metrics name prefix {@code undertow.threads.*}.
  */
-@NonNullApi
-@NonNullFields
 public class JbossThreadPoolMetrics implements MeterBinder, AutoCloseable {
 
     private static final Logger log = LogManager.getLogger(JbossThreadPoolMetrics.class);

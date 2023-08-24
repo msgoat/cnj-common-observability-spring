@@ -13,7 +13,7 @@ import java.io.IOException;
 /**
  * {@code Servlet Filter} which traces incoming REST requests and outgoing REST responses.
  */
-public final class ContainerRestTraceFilter extends OncePerRequestFilter {
+public final class RestTraceContainerFilter extends OncePerRequestFilter {
 
     private final Logger logger = LoggerFactory.getLogger(RestTraceConstants.REST_TRACE_LOGGER_NAME);
 

@@ -15,7 +15,7 @@ import java.io.IOException;
  * {@code RestTemplate} interceptor which logs outbound REST requests and inbound REST responses.
  */
 @Order(Ordered.LOWEST_PRECEDENCE)
-public final class ClientRestTraceInterceptor implements ClientHttpRequestInterceptor {
+public final class RestTraceClientInterceptor implements ClientHttpRequestInterceptor {
 
     private final Logger logger = LoggerFactory.getLogger(RestTraceConstants.REST_TRACE_LOGGER_NAME);
 
