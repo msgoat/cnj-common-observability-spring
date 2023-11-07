@@ -3,10 +3,12 @@ package group.msg.at.cloud.common.observability.rest.trace;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.reactive.function.client.WebClient;
 
 /**
  * Configuration for REST traces logged to application logs.
@@ -53,6 +55,7 @@ public class RestTraceAutoConfiguration {
     }
 
     @Bean
+    @ConditionalOnClass(WebClient.class)
     public RestTraceWebClientCustomizer restTraceWebClientCustomizer() {
         log.info("*** CONFIG *** Adding web client rest trace customizer to application context");
         RestTraceWebClientCustomizer result = new RestTraceWebClientCustomizer();

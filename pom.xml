@@ -9,7 +9,7 @@
     <description>Common components to improve observability of cloud-native applications based on Spring Boot</description>
     <properties>
         <!-- new Maven version management -->
-        <revision>1.1.0</revision>
+        <revision>1.2.0</revision>
         <sha1></sha1>
         <changelist></changelist>
         <!-- common properties -->
@@ -18,23 +18,31 @@
         <java.version>17</java.version>
         <spring.boot.version>3.1.0</spring.boot.version>
         <!-- pinning versions of common maven plugins -->
-        <maven.clean.plugin.version>3.1.0</maven.clean.plugin.version>
-        <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
-        <maven.deploy.plugin.version>2.8.2</maven.deploy.plugin.version>
-        <maven.enforcer.plugin.version>3.0.0-M3</maven.enforcer.plugin.version>
-        <maven.failsafe.plugin.version>2.22.1</maven.failsafe.plugin.version>
-        <maven.flatten.plugin.version>1.2.1</maven.flatten.plugin.version>
-        <maven.install.plugin.version>2.5.2</maven.install.plugin.version>
-        <maven.jar.plugin.version>3.2.0</maven.jar.plugin.version>
-        <maven.resources.plugin.version>3.1.0</maven.resources.plugin.version>
-        <maven.site.plugin.version>3.8.2</maven.site.plugin.version>
-        <maven.source.plugin.version>3.2.1</maven.source.plugin.version>
-        <maven.surefire.plugin.version>2.22.1</maven.surefire.plugin.version>
+        <maven.clean.plugin.version>3.3.2</maven.clean.plugin.version>
+        <maven.compiler.plugin.version>3.11.0</maven.compiler.plugin.version>
+        <maven.dependency.plugin.version>3.6.1</maven.dependency.plugin.version>
+        <maven.deploy.plugin.version>3.1.1</maven.deploy.plugin.version>
+        <maven.docker.plugin.version>0.43.4</maven.docker.plugin.version>
+        <maven.enforcer.plugin.version>3.4.1</maven.enforcer.plugin.version>
+        <maven.failsafe.plugin.version>3.2.1</maven.failsafe.plugin.version>
+        <maven.flatten.plugin.version>1.5.0</maven.flatten.plugin.version>
+        <maven.install.plugin.version>3.1.1</maven.install.plugin.version>
+        <maven.jacoco.plugin.version>0.8.11</maven.jacoco.plugin.version>
+        <maven.jar.plugin.version>3.3.0</maven.jar.plugin.version>
+        <maven.owasp.plugin.version>8.4.2</maven.owasp.plugin.version>
+        <maven.resources.plugin.version>3.3.1</maven.resources.plugin.version>
+        <maven.site.plugin.version>3.12.1</maven.site.plugin.version>
+        <maven.sonar.plugin.version>3.10.0.2594</maven.sonar.plugin.version>
+        <maven.source.plugin.version>3.3.0</maven.source.plugin.version>
+        <maven.surefire.plugin.version>3.2.1</maven.surefire.plugin.version>
+        <maven.war.plugin.version>3.4.0</maven.war.plugin.version>
+        <!-- pinning versions of custom maven plugins -->
+        <maven.compose.plugin.version>5.0.0</maven.compose.plugin.version>
+        <maven.helm.plugin.version>4.0.0</maven.helm.plugin.version>
         <!-- quality assurance properties -->
-        <maven.sonar.plugin.version>3.9.1.2184</maven.sonar.plugin.version>
         <sonar.host.url>https://sonarqube.cloudtrain.aws.msgoat.eu</sonar.host.url>
-        <maven.jacoco.plugin.version>0.8.7</maven.jacoco.plugin.version>
-        <maven.owasp.plugin.version>6.5.3</maven.owasp.plugin.version>
+        <jacoco.address>localhost</jacoco.address>
+        <jacoco.port>38089</jacoco.port>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -102,6 +110,11 @@
                         <source>${java.version}</source>
                         <target>${java.version}</target>
                         <parameters>true</parameters>
+                        <showDeprecation>true</showDeprecation>
+                        <showWarnings>true</showWarnings>
+                        <compilerArgs>
+                            <arg>-Xlint</arg>
+                        </compilerArgs>
                     </configuration>
                 </plugin>
                 <plugin>

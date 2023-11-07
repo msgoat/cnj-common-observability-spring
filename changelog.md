@@ -4,7 +4,17 @@ All notable changes to `cnj-common-observability-spring` will be documented in t
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [Unreleased] - YYYY-MM-DD
+### Added
+### Changed
+### Fixed
+
+## [1.2.0] - 2023-11-07
+### Added
+### Changed
+- Library does not impose dependency to Spring WebFlux anymore
+- Upgraded all Maven plugin versions
+### Fixed
 
 ## [1.1.0] - 2023-08-24
 ### Changed
