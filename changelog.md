@@ -9,6 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Fixed
 
+## [1.3.0] - 2024-01-31
+### Added 
+- Added git tagging
+### Changed
+- Upgraded to Spring Boot 3.2.2
+- Upgraded all Maven plugin versions
+- Upgraded all common dependencies
+
 ## [1.2.0] - 2023-11-07
 ### Added
 ### Changed

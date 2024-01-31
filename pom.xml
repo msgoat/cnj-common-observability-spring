@@ -9,14 +9,22 @@
     <description>Common components to improve observability of cloud-native applications based on Spring Boot</description>
     <properties>
         <!-- new Maven version management -->
-        <revision>1.2.0</revision>
+        <revision>1.3.0</revision>
         <sha1></sha1>
         <changelist></changelist>
         <!-- common properties -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>17</java.version>
-        <spring.boot.version>3.1.0</spring.boot.version>
+        <spring.boot.version>3.2.2</spring.boot.version>
+        <!-- common logging dependencies -->
+        <slf4j.version>2.0.11</slf4j.version>
+        <log4j.version>2.20.0</log4j.version>
+        <!-- common test dependencies -->
+        <junit.version>5.10.1</junit.version>
+        <assertj.version>3.24.2</assertj.version>
+        <restassured.version>5.4.0</restassured.version>
+        <jackson.version>2.15.3</jackson.version>
         <!-- pinning versions of common maven plugins -->
         <maven.clean.plugin.version>3.3.2</maven.clean.plugin.version>
         <maven.compiler.plugin.version>3.11.0</maven.compiler.plugin.version>
@@ -29,7 +37,7 @@
         <maven.install.plugin.version>3.1.1</maven.install.plugin.version>
         <maven.jacoco.plugin.version>0.8.11</maven.jacoco.plugin.version>
         <maven.jar.plugin.version>3.3.0</maven.jar.plugin.version>
-        <maven.owasp.plugin.version>8.4.2</maven.owasp.plugin.version>
+        <maven.owasp.plugin.version>9.0.7</maven.owasp.plugin.version>
         <maven.resources.plugin.version>3.3.1</maven.resources.plugin.version>
         <maven.site.plugin.version>3.12.1</maven.site.plugin.version>
         <maven.sonar.plugin.version>3.10.0.2594</maven.sonar.plugin.version>
@@ -251,7 +259,7 @@
                 <artifactId>dependency-check-maven</artifactId>
                 <executions>
                     <execution>
-                        <id>run OWASP dependency check</id>
+                        <id>analyze-dependencies</id>
                         <goals>
                             <goal>check</goal>
                         </goals>
@@ -259,10 +267,8 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <formats>
-                        <format>HTML</format>
-                        <format>JSON</format>
-                    </formats>
+                    <nvdApiServerId>nist-nvd</nvdApiServerId>
+                    <formats>HTML,JSON</formats>
                 </configuration>
             </plugin>
             <plugin>
